@@ -10,6 +10,22 @@ test('Finds score differentail for round of 82', ()=> {
     expect(scoreDifferential(slopeRating, grossScore, courseRating)).toBe(7.9)
 });
 
+test('accepts slope rating at the lower boundary (55)', () => {
+    expect(() => scoreDifferential(55, 82, 72.6)).not.toThrow();
+  });
+
+  test('accepts slope rating at the upper boundary (155)', () => {
+    expect(() => scoreDifferential(155, 82, 72.6)).not.toThrow();
+  });
+
+  test('rejects slope rating just below the lower boundary (54)', () => {
+    expect(() => scoreDifferential(54, 82, 72.6)).toThrow('Invalid Slope Rating');
+  });
+
+  test('rejects slope rating just above the upper boundary (156)', () => {
+    expect(() => scoreDifferential(156, 82, 72.6)).toThrow('Invalid Slope Rating');
+  });
+
 // differentialAvg Function testing
 test('Finds handicap for 3 rounds posted', ()=> {
     const testArrayThree = [30, 10, 40];
