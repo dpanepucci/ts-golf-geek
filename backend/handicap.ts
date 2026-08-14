@@ -1,11 +1,16 @@
 //Score Differential = 113/Slope Rating X (adjusted gross score - course rating - PCC)
 
+/**
+ * 
+ * @param slopeRating found on scorecard
+ * @param grossScore none adjusted score from the round
+ * @param courseRating located on the scorecard 
+ * @returns the score differential for that specific round
+ */
+
 export const scoreDifferential = (slopeRating:number, grossScore:number, courseRating:number) => {
     if (slopeRating > 155 || slopeRating < 55) {
         throw Error("Invalid Slope Rating")
-    }
-    if (grossScore == 18) {
-        throw Error("Why you lying bro?")
     }
 
     // Hard coded PCC into function (Average per course on any given day)
@@ -19,8 +24,13 @@ export const scoreDifferential = (slopeRating:number, grossScore:number, courseR
     return roundHandicap;
 }
 
-// console.log(scoreDifferential(134, 87, 72.6));
-// console.log(scoreDifferential(134, 82, 72.6));
+/**
+ * 
+ * @param arrayArg An array of score differentials. WARNING: This function
+ * will compute a handicap with no ability to check for most recent 20 rounds.
+ * The caller must filter for most recent 20 rounds for accurate representation of handicap.
+ * @returns the handicap of the user depending on the number of rounds passed into the function
+ */
 
 export const differentialAvg = (arrayArg:number[]) => {
 
@@ -144,27 +154,3 @@ export const differentialAvg = (arrayArg:number[]) => {
             return overallBestHC;
     }
 }
-
-let testArrayThree = [30, 10, 40] // 8
-let testArrayFour = [30, 10, 6, 40] // 5
-let testFive = [30, 10, 6, 40, 30] // 6
-let testSix = [30, 10, 2, 40, 30, 25] // 5
-let testArrayEight = [1, 2, 3, 4, 5, 6, 7, 8] // 1.5
-let testEleven = [1, 2, 3, 4, 5, 6, 7, 8, 10, 3, 5] // 2
-let testArrayFourteen = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14] // 2.5
-let testSixteen = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 6, 7] // 3
-let testEightteen = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 6, 7, 7, 20] // 3.5
-let testNineTeen = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 16, 7, 7, 20, 22] // 4
-let testArrayTwenty = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14 ,15 ,16 ,17 ,18 ,19, 20] // 4.5
-
-// console.log(differentialAvg(testArrayThree));
-// console.log(differentialAvg(testArrayFour));
-// console.log(differentialAvg(testFive));
-// console.log(differentialAvg(testSix));
-// console.log(differentialAvg(testArrayEight));
-// console.log(differentialAvg(testEleven));
-// console.log(differentialAvg(testSixteen))
-// console.log(differentialAvg(testEightteen))
-// console.log(differentialAvg(testNineTeen));
-// console.log(differentialAvg(testArrayFourteen));
-// console.log(differentialAvg(testArrayTwenty));
