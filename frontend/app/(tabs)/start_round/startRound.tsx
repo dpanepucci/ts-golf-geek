@@ -1,10 +1,8 @@
-import { Image } from 'expo-image';
-import { Platform, StyleSheet, View, Text } from 'react-native';
+import { StyleSheet, View, Text, Pressable } from 'react-native';
 import React, {useState} from 'react';
 import {Dropdown} from 'react-native-element-dropdown';
 
-import { Collapsible } from '@/components/ui/collapsible';
-import { ExternalLink } from '@/components/external-link';
+
 import ParallaxScrollView from '@/components/parallax-scroll-view';
 import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
@@ -27,13 +25,18 @@ export default function StartRound() {
   const [value, setValue] = useState<string | null>(null);
   const [isFocus, setIsFocus] = useState(false);
 
+  const [selected, setSelected] = useState<9 | 18>(18);
+  const handleHoles = (holes: 9 | 18) => {
+  setSelected(holes);
+};
+
   return (
     <ParallaxScrollView
-      headerBackgroundColor={{ light: '#D0D0D0', dark: '#353636' }}
+      headerBackgroundColor={{ light: '#185430', dark: '#353636' }}
       headerImage={
         <IconSymbol
           size={310}
-          color="#808080"
+          color="#f8f9f8"
           name="chevron.left.forwardslash.chevron.right"
           style={styles.headerImage}
         />
@@ -49,7 +52,7 @@ export default function StartRound() {
       </ThemedView>
       <ThemedText>Select a course or add one before starting your round.</ThemedText>
     <View style={styles.container}>
-      <Text style={styles.label}>Select Framework Language</Text>
+      <Text style={styles.label}>Select Course</Text>
       <Dropdown
         style={[styles.dropdown, isFocus && { borderColor: 'blue' }]}
         placeholderStyle={styles.placeholderStyle}
@@ -70,6 +73,19 @@ export default function StartRound() {
           setIsFocus(false);
         }}
       />
+      <Pressable
+        style={[holeStyles.button, selected === 9 && holeStyles.activeButton]}
+        onPress={() => handleHoles(9)}
+      >
+        <Text style={[holeStyles.text, selected === 9 && holeStyles.activeText]}>9 Holes</Text>
+      </Pressable>
+
+      <Pressable
+        style={[holeStyles.button, selected === 18 && holeStyles.activeButton]}
+        onPress={() => handleHoles(18)}
+      >
+        <Text style={[holeStyles.text, selected === 18 && holeStyles.activeText]}>18 Holes</Text>
+      </Pressable>
     </View>
 
     </ParallaxScrollView>
@@ -115,5 +131,33 @@ const styles = StyleSheet.create({
   inputSearchStyle: {
     height: 40,
     fontSize: 16,
+  },
+});
+
+const holeStyles = StyleSheet.create({
+  container: {
+    flexDirection: 'row',
+    backgroundColor: '#E5E7EB',
+    borderRadius: 8,
+    padding: 4,
+    width: '100%',
+    maxWidth: 320,
+  },
+  button: {
+    flex: 1,
+    paddingVertical: 10,
+    alignItems: 'center',
+    borderRadius: 6,
+  },
+  activeButton: {
+    backgroundColor: '#185430',
+  },
+  text: {
+    fontSize: 16,
+    fontWeight: '600',
+    color: '#4B5563',
+  },
+  activeText: {
+    color: '#FFFFFF',
   },
 });
