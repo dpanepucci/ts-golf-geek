@@ -92,6 +92,13 @@ export default function StartRound() {
       </Pressable>
 
       <Pressable
+      style={startRound.button}
+      onPress={() => (navigation as any).navigate('addCourse')}
+      >
+        <Text style={startRound.buttonText}>Start Round</Text>
+      </Pressable>
+
+      <Pressable
         style={addCourse.button}
         onPress={() => (navigation as any).navigate('addCourse')}
         >
@@ -174,7 +181,13 @@ const holeStyles = StyleSheet.create({
 });
 
 const addCourse = StyleSheet.create({
-    container: { flex: 1, justifyContent: 'center', alignItems: 'center' },
+  container: { flex: 1, justifyContent: 'center', alignItems: 'center' },
   button: { backgroundColor: '#007AFF', padding: 12, borderRadius: 8, marginTop: 10 },
   buttonText: { color: '#FFF', fontSize: 16, fontWeight: 'bold' }
+})
+
+const startRound = StyleSheet.create({
+  container: {flex: 1, justifyContent: 'center', alignContent:'center'},
+  button: { backgroundColor: '#185430', padding: 12, borderRadius: 8, marginTop: 10 },
+  buttonText: { color: '#FFF', fontSize: 16, fontWeight: 'bold', textAlign:'center'}
 })
