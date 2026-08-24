@@ -55,54 +55,56 @@ export default function StartRound() {
         </ThemedText>
       </ThemedView>
       <ThemedText>Select a course or add one before starting your round.</ThemedText>
-    <View style={styles.container}>
-      <Text style={styles.label}>Select Course</Text>
-      <Dropdown
-        style={[styles.dropdown, isFocus && { borderColor: 'blue' }]}
-        placeholderStyle={styles.placeholderStyle}
-        selectedTextStyle={styles.selectedTextStyle}
-        inputSearchStyle={styles.inputSearchStyle}
-        data={data}
-        search
-        maxHeight={300}
-        labelField="label"
-        valueField="value"
-        placeholder={!isFocus ? 'Select item' : '...'}
-        searchPlaceholder="Search..."
-        value={value}
-        onFocus={() => setIsFocus(true)}
-        onBlur={() => setIsFocus(false)}
-        onChange={(item:CourseOption) => {
-          setValue(item.value);
-          setIsFocus(false);
-        }}
-      />
-      <Pressable
-        style={[holeStyles.button, selected === 9 && holeStyles.activeButton]}
-        onPress={() => handleHoles(9)}
-      >
-        <Text style={[holeStyles.text, selected === 9 && holeStyles.activeText]}>9 Holes</Text>
-      </Pressable>
+    <View style={[styles.container, styles.addCourseBtn]}>
+      <View>
+        <Text style={styles.label}>Select Course</Text>
+        <Dropdown
+          style={[styles.dropdown, isFocus && { borderColor: 'blue' }]}
+          placeholderStyle={styles.placeholderStyle}
+          selectedTextStyle={styles.selectedTextStyle}
+          inputSearchStyle={styles.inputSearchStyle}
+          data={data}
+          search
+          maxHeight={300}
+          labelField="label"
+          valueField="value"
+          placeholder={!isFocus ? 'Select item' : '...'}
+          searchPlaceholder="Search..."
+          value={value}
+          onFocus={() => setIsFocus(true)}
+          onBlur={() => setIsFocus(false)}
+          onChange={(item:CourseOption) => {
+            setValue(item.value);
+            setIsFocus(false);
+          }}
+        />
+        <Pressable
+          style={[holeStyles.button, selected === 9 && holeStyles.activeButton]}
+          onPress={() => handleHoles(9)}
+        >
+          <Text style={[holeStyles.text, selected === 9 && holeStyles.activeText]}>9 Holes</Text>
+        </Pressable>
 
-      <Pressable
-        style={[holeStyles.button, selected === 18 && holeStyles.activeButton]}
-        onPress={() => handleHoles(18)}
-      >
-        <Text style={[holeStyles.text, selected === 18 && holeStyles.activeText]}>18 Holes</Text>
-      </Pressable>
+        <Pressable
+          style={[holeStyles.button, selected === 18 && holeStyles.activeButton]}
+          onPress={() => handleHoles(18)}
+        >
+          <Text style={[holeStyles.text, selected === 18 && holeStyles.activeText]}>18 Holes</Text>
+        </Pressable>
 
-      <Pressable
-      style={startRound.button}
-      onPress={() => (navigation as any).navigate('addCourse')}
-      >
-        <Text style={startRound.buttonText}>Start Round</Text>
-      </Pressable>
-
-      <Pressable
-        style={addCourse.button}
+        <Pressable
+        style={startRound.button}
         onPress={() => (navigation as any).navigate('addCourse')}
         >
-        <Text style={addCourse.buttonText}>Add Course</Text>
+          <Text style={startRound.buttonText}>Start Round</Text>
+        </Pressable>
+      </View>
+
+      <Pressable
+        style={styles.buttonAC}
+        onPress={() => (navigation as any).navigate('addCourse')}
+        >
+        <Text style={styles.buttonTextAC}>Add Course</Text>
       </Pressable>
     </View>
 
@@ -133,6 +135,7 @@ const styles = StyleSheet.create({
     borderWidth: 0.5,
     borderRadius: 8,
     paddingHorizontal: 8,
+    marginBottom: 10,
   },
   label: {
     marginBottom: 8,
@@ -150,6 +153,22 @@ const styles = StyleSheet.create({
     height: 40,
     fontSize: 16,
   },
+  addCourseBtn: {
+    justifyContent: 'space-between',
+    flex: 1,
+  },
+    buttonAC: { 
+      backgroundColor: '#007AFF', 
+      padding: 12, 
+      borderRadius: 8, 
+      marginTop: 10,
+  },
+    buttonTextAC: { color: '#FFF',
+    fontSize: 16,
+    fontWeight: 'bold',
+    textAlign:'center'
+  },
+
 });
 
 const holeStyles = StyleSheet.create({
@@ -180,14 +199,8 @@ const holeStyles = StyleSheet.create({
   },
 });
 
-const addCourse = StyleSheet.create({
-  container: { flex: 1, justifyContent: 'center', alignItems: 'center' },
-  button: { backgroundColor: '#007AFF', padding: 12, borderRadius: 8, marginTop: 10 },
-  buttonText: { color: '#FFF', fontSize: 16, fontWeight: 'bold' }
-})
 
 const startRound = StyleSheet.create({
-  container: {flex: 1, justifyContent: 'center', alignContent:'center'},
   button: { backgroundColor: '#185430', padding: 12, borderRadius: 8, marginTop: 10 },
   buttonText: { color: '#FFF', fontSize: 16, fontWeight: 'bold', textAlign:'center'}
 })
