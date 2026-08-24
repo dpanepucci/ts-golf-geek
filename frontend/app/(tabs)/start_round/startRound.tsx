@@ -1,6 +1,7 @@
 import { StyleSheet, View, Text, Pressable } from 'react-native';
 import React, {useState} from 'react';
 import {Dropdown} from 'react-native-element-dropdown';
+import { useNavigation } from '@react-navigation/native';
 
 
 import ParallaxScrollView from '@/components/parallax-scroll-view';
@@ -8,6 +9,7 @@ import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
 import { IconSymbol } from '@/components/ui/icon-symbol';
 import { Fonts } from '@/constants/theme';
+
 
 type CourseOption = {
   label: string;
@@ -29,6 +31,8 @@ export default function StartRound() {
   const handleHoles = (holes: 9 | 18) => {
   setSelected(holes);
 };
+
+  const navigation = useNavigation();
 
   return (
     <ParallaxScrollView
@@ -85,6 +89,13 @@ export default function StartRound() {
         onPress={() => handleHoles(18)}
       >
         <Text style={[holeStyles.text, selected === 18 && holeStyles.activeText]}>18 Holes</Text>
+      </Pressable>
+
+      <Pressable
+        style={addCourse.button}
+        onPress={() => (navigation as any).navigate('addCourse')}
+        >
+        <Text style={addCourse.buttonText}>Add Course</Text>
       </Pressable>
     </View>
 
@@ -161,3 +172,9 @@ const holeStyles = StyleSheet.create({
     color: '#FFFFFF',
   },
 });
+
+const addCourse = StyleSheet.create({
+    container: { flex: 1, justifyContent: 'center', alignItems: 'center' },
+  button: { backgroundColor: '#007AFF', padding: 12, borderRadius: 8, marginTop: 10 },
+  buttonText: { color: '#FFF', fontSize: 16, fontWeight: 'bold' }
+})
