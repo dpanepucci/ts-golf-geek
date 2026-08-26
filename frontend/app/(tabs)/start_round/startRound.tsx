@@ -10,17 +10,15 @@ import { ThemedView } from '@/components/themed-view';
 import { IconSymbol } from '@/components/ui/icon-symbol';
 import { Fonts } from '@/constants/theme';
 
+import availableCourseData from '../../../SAMPLE_DATA/avaliableCourses.json';
 
-type CourseOption = {
-  label: string;
-  value:string;
+type AvailableCourseOption = {
+  courseName: string;
 };
 
-const data: CourseOption[] = [
-  { label: 'Northstar', value: 'NS' },
-  { label: 'Pebble Beach', value: 'PB' },
+const courseOptions: AvailableCourseOption[] = [
+  { courseName: availableCourseData.courseName },
 ];
-
 
 export default function StartRound() {
 
@@ -63,18 +61,18 @@ export default function StartRound() {
           placeholderStyle={styles.placeholderStyle}
           selectedTextStyle={styles.selectedTextStyle}
           inputSearchStyle={styles.inputSearchStyle}
-          data={data}
+          data={courseOptions}
           search
           maxHeight={300}
-          labelField="label"
-          valueField="value"
+          labelField="courseName"
+          valueField="courseName"
           placeholder={!isFocus ? 'Select item' : '...'}
           searchPlaceholder="Search..."
           value={value}
           onFocus={() => setIsFocus(true)}
           onBlur={() => setIsFocus(false)}
-          onChange={(item:CourseOption) => {
-            setValue(item.value);
+          onChange={(item: AvailableCourseOption) => {
+            setValue(item.courseName);
             setIsFocus(false);
           }}
         />

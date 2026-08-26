@@ -1,0 +1,31 @@
+
+{
+  "courseName": "NorthStar Golf Club",
+  "tees": [
+    {
+      "color": "Blue/Green",
+      "rating": 72.6,
+      "slope": 134
+    }
+  ],
+  "holes": [
+    { "holeNumber": 1, "par": 4 },
+    { "holeNumber": 2, "par": 4 },
+    { "holeNumber": 3, "par": 5 },
+    { "holeNumber": 4, "par": 3 },
+    { "holeNumber": 5, "par": 4 },
+    { "holeNumber": 6, "par": 4 },
+    { "holeNumber": 7, "par": 5 },
+    { "holeNumber": 8, "par": 3 },
+    { "holeNumber": 9, "par": 4 },
+    { "holeNumber": 10, "par": 5 },
+    { "holeNumber": 11, "par": 4 },
+    { "holeNumber": 12, "par": 4 },
+    { "holeNumber": 13, "par": 4 },
+    { "holeNumber": 14, "par": 4 },
+    { "holeNumber": 15, "par": 3 },
+    { "holeNumber": 16, "par": 5 },
+    { "holeNumber": 17, "par": 3 },
+    { "holeNumber": 18, "par": 4 }
+  ]
+}
