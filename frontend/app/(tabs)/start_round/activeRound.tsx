@@ -1,0 +1,23 @@
+import { View, Text, TouchableOpacity } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+import { StyleSheet } from 'react-native';
+
+export default function ActiveRound() {
+    const navigation = useNavigation();
+
+  return (
+    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+        <Text style={{ fontSize: 24 }}>Start Tracking your Round</Text>
+
+        <TouchableOpacity style={addCourseBackBtn.button} onPress={() => navigation.goBack()}>
+            <Text style={addCourseBackBtn.buttonText}>Exit Round</Text>
+        </TouchableOpacity>
+    </View>
+  );
+}
+
+const addCourseBackBtn = StyleSheet.create({
+    container: { flex: 1, justifyContent: 'center', alignItems: 'center' },
+  button: { backgroundColor: '#f32715', padding: 12, borderRadius: 8, marginTop: 10 },
+  buttonText: { color: '#FFF', fontSize: 16, fontWeight: 'bold' }
+})

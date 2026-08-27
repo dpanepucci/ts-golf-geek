@@ -1,4 +1,5 @@
 
+[
 {
   "courseName": "NorthStar Golf Club",
   "tees": [
@@ -28,4 +29,35 @@
     { "holeNumber": 17, "par": 3 },
     { "holeNumber": 18, "par": 4 }
   ]
+},
+{
+      "courseName": "Siena Golf Club",
+  "tees": [
+    {
+      "color": "Black",
+      "rating": 71.8,
+      "slope": 138
+    }
+  ],
+  "holes": [
+    { "holeNumber": 1, "par": 4 },
+    { "holeNumber": 2, "par": 4 },
+    { "holeNumber": 3, "par": 5 },
+    { "holeNumber": 4, "par": 4 },
+    { "holeNumber": 5, "par": 3 },
+    { "holeNumber": 6, "par": 4 },
+    { "holeNumber": 7, "par": 3 },
+    { "holeNumber": 8, "par": 5 },
+    { "holeNumber": 9, "par": 4 },
+    { "holeNumber": 10, "par": 4 },
+    { "holeNumber": 11, "par": 4 },
+    { "holeNumber": 12, "par": 5 },
+    { "holeNumber": 13, "par": 4 },
+    { "holeNumber": 14, "par": 3 },
+    { "holeNumber": 15, "par": 5 },
+    { "holeNumber": 16, "par": 4 },
+    { "holeNumber": 17, "par": 3 },
+    { "holeNumber": 18, "par": 4 }
+  ]
 }
+]

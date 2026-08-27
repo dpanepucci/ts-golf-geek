@@ -1,6 +1,6 @@
-import { StyleSheet, View, Text, Pressable } from 'react-native';
-import React, {useState} from 'react';
-import {Dropdown} from 'react-native-element-dropdown';
+import { StyleSheet, View, Text, Pressable, Alert } from 'react-native';
+import React, { useState } from 'react';
+import { Dropdown } from 'react-native-element-dropdown';
 import { useNavigation } from '@react-navigation/native';
 
 
@@ -10,17 +10,27 @@ import { ThemedView } from '@/components/themed-view';
 import { IconSymbol } from '@/components/ui/icon-symbol';
 import { Fonts } from '@/constants/theme';
 
-import availableCourseData from '../../../SAMPLE_DATA/avaliableCourses.json';
+import availableCourses from '@/SAMPLE_DATA/avaliableCourses.json';
 
-type AvailableCourseOption = {
-  courseName: string;
-};
-
-const courseOptions: AvailableCourseOption[] = [
-  { courseName: availableCourseData.courseName },
-];
+type AvailableCourseOption = (typeof availableCourses)[number]; 
+const courseOptions: AvailableCourseOption[] = availableCourses;
 
 export default function StartRound() {
+
+  const [selectedCourse, setSelectedCourse] = useState<AvailableCourseOption | null>(null);
+  const [error, setError] = useState<string | null>(null);
+
+  const handleSubmit = () => {
+    if (!selectedCourse) {
+      const message = 'Please select a course.';
+      setError(message);
+      Alert.alert('Validation error', message);
+      return false;
+    }
+
+    setError(null);
+    return true;
+  };
 
   const [value, setValue] = useState<string | null>(null);
   const [isFocus, setIsFocus] = useState(false);
@@ -71,11 +81,14 @@ export default function StartRound() {
           value={value}
           onFocus={() => setIsFocus(true)}
           onBlur={() => setIsFocus(false)}
-          onChange={(item: AvailableCourseOption) => {
+          onChange={(item) => {
             setValue(item.courseName);
+            setSelectedCourse(item);
+            setError(null);
             setIsFocus(false);
           }}
         />
+        {error ? <Text style={styles.errorText}>{error}</Text> : null}
         <Pressable
           style={[holeStyles.button, selected === 9 && holeStyles.activeButton]}
           onPress={() => handleHoles(9)}
@@ -91,10 +104,27 @@ export default function StartRound() {
         </Pressable>
 
         <Pressable
-        style={startRound.button}
-        onPress={() => (navigation as any).navigate('addCourse')}
+          style={({ pressed }) => [
+            startRound.button,
+            pressed ? startRound.buttonPressed : null,
+          ]}
+          onPress={() => {
+            const isValid = handleSubmit();
+            if (!isValid) return;
+
+            (navigation as any).navigate('activeRound', { course: selectedCourse });
+          }}
         >
-          <Text style={startRound.buttonText}>Start Round</Text>
+          {({ pressed }) => (
+            <Text
+              style={[
+                startRound.buttonText,
+                pressed ? startRound.buttonPressed : null,
+              ]}
+            >
+              Start Round
+            </Text>
+          )}
         </Pressable>
       </View>
 
@@ -146,6 +176,10 @@ const styles = StyleSheet.create({
   },
   selectedTextStyle: {
     fontSize: 16,
+  },
+  errorText: {
+    color: '#B00020',
+    marginBottom: 10,
   },
   inputSearchStyle: {
     height: 40,
@@ -200,5 +234,6 @@ const holeStyles = StyleSheet.create({
 
 const startRound = StyleSheet.create({
   button: { backgroundColor: '#185430', padding: 12, borderRadius: 8, marginTop: 10 },
-  buttonText: { color: '#FFF', fontSize: 16, fontWeight: 'bold', textAlign:'center'}
+  buttonText: { color: '#FFF', fontSize: 16, fontWeight: 'bold', textAlign:'center'},
+  buttonPressed: { opacity: 0.7, color: '#ff0000', fontSize: 20,}
 })
