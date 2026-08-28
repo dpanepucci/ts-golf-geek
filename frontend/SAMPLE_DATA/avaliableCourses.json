@@ -4,6 +4,7 @@
   "courseName": "NorthStar Golf Club",
   "tees": [
     {
+      "par": 72,
       "color": "Blue/Green",
       "rating": 72.6,
       "slope": 134
@@ -34,6 +35,7 @@
       "courseName": "Siena Golf Club",
   "tees": [
     {
+      "par": 72,
       "color": "Black",
       "rating": 71.8,
       "slope": 138
