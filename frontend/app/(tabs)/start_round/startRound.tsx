@@ -44,7 +44,7 @@ export default function StartRound() {
 
   return (
     <ParallaxScrollView
-      headerBackgroundColor={{ light: '#185430', dark: '#353636' }}
+      headerBackgroundColor="#185430"
       headerImage={
         <IconSymbol
           size={310}

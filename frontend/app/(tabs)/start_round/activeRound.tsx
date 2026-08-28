@@ -9,6 +9,12 @@ type ActiveRoundRouteParams = {
   course?: AvailableCourseOption;
 };
 
+// Function to handle onChange and data collection
+// add to Next Hole button
+function statCollection () {
+
+}
+
 export default function ActiveRound() {
     const navigation = useNavigation();
     const route = useRoute<RouteProp<Record<string, ActiveRoundRouteParams>, string>>();
